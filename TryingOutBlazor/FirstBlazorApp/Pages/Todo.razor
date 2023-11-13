@@ -1,0 +1,33 @@
+﻿@page "/todo"
+
+<h3>Todo</h3>
+
+<ul>
+    @foreach (var item in Todos)
+    {
+        <li>@item.Description</li>
+    }
+</ul>
+
+<input @bind="NewTodo" @bind:event="oninput" placeholder="What do you need to do?" />
+<input @bind="DueDate" @bind:format="yyyy-MM-dd" placeholder="Due Date" /> @* trigger operation on with bind:xxx, binds events *@
+<button @onclick="Save">Save</button>
+
+@if (!string.IsNullOrEmpty(NewTodo))
+{
+    <p>@NewTodo Due: @DueDate?.ToShortDateString()</p>
+}
+
+@code {
+    public record TodoItem(string Description, DateTime? DueDate);
+
+    private List<TodoItem> Todos = new List<TodoItem>();
+
+    private string NewTodo = string.Empty;
+    private DateTime? DueDate = null;
+
+    private void Save()
+    {
+        Todos.Add(new(NewTodo, DueDate));
+    }
+}

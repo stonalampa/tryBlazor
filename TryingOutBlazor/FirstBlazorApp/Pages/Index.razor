@@ -1,0 +1,14 @@
+﻿@page "/" 
+@* says that the path this page shows is / *@
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@* any .razor file is a razor component and it can be referenced from any .razor file *@
+
+@* this is another component, razor template is HTML + C# code + other components *@
+<SurveyPrompt Title="How is Blazor working for you?" /> 
+
+<Counter IncrementBy="5"/> 
